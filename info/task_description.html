@@ -3,22 +3,26 @@
     This mission is inspired by the following Brian Bilston's facebook <a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">post</a>:
 </p>
 <p style="text-align: center;">
-    <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 200px"/>
+    <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 300px"/>
 </p>
 <p>
-    Split a given text (letters and " .,!?:;") into an {% if is_js %}Array{% else %}Iterable{% endif %} of strings, where each one includes number of words equal to the current <a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>.
+    Split a given text  into multiline one with "\n", where each line includes number of words equal to the current <a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>.
 </p>
 <p>
     Here are some clarifications:
     <ul>
-        <li>Fibonacci sequence starts from 0, 1, but the result {% if is_js %}Array{% else %}Iterable{% endif %} should include only non-empty strings;</li>
+        <li>Fibonacci sequence starts from 0, 1, but the result string should include only non-empty lines;</li>
         <li>in case, there are not enough words for current line - complement to proper length with "_";</li>
         <li>punctuation marks are considered as a part of a previous word.</li>
     </ul>
 </p>
 <p>Let's look at the schematic example ("w" for a word):</p>
 <pre>
-"w w w w w w w w" -> ["w", "w", "w w", "w w w", "w _ _ _ _"]
+"w w w w w w w w" -> '''w
+                        w
+                        w w
+                        w w w
+                        w _ _ _ _'''
 </pre>
 
 <!-- Explain input and output values -->
@@ -27,7 +31,7 @@
 </p>
 
 <p>
-    <strong>Output:</strong> {% if is_js %}Array{% else %}List or another Iterable (tuple, generator, iterator){% endif %} of strings.
+    <strong>Output:</strong> A string.
 </p>
 
 <p>

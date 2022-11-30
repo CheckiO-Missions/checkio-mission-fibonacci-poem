@@ -11,26 +11,73 @@ Each test is a dict with
 TESTS = {
     "Basics": [
         {
-            "input": [3, 2],
-            "answer": 5,
-            "explanation": "3+2=?"
+            "input": [""],
+            "answer": "",
         },
         {
-            "input": [5, 7],
-            "answer": 12,
-            "explanation": "5+7=?"
-        }
+            "input": ["Django framework"],
+            "answer": '''Django
+framework''',
+        },
+        {
+            "input": ["Zen of Python"],
+            "answer": '''Zen
+of
+Python _''',
+        },
+        {
+            "input": ["There are three kinds of lies: Lies, damned lies, and the benchmarks."],
+            "answer": '''There
+are
+three kinds
+of lies: Lies,
+damned lies, and the benchmarks.''',
+        },
     ],
     "Extra": [
         {
-            "input": [6, 3],
-            "answer": 9,
-            "explanation": "6+3=?"
+            "input": ["Python"],
+            "answer": "Python",
         },
         {
-            "input": [6, 7],
-            "answer": 13,
-            "explanation": "6+7=?"
-        }
+            "input": ["How did the programmer die in the shower? He read the shampoo bottle instructions: Lather. Rinse. Repeat."],
+            "answer": '''How
+did
+the programmer
+die in the
+shower? He read the shampoo
+bottle instructions: Lather. Rinse. Repeat. _ _ _''',
+        },
+        {
+            "input": ['''Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it. 
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea-- let's do more of those!'''],
+            "answer": '''Beautiful
+is
+better than
+ugly. Explicit is
+better than implicit. Simple is
+better than complex. Complex is better than complicated.
+Flat is better than nested. Sparse is better than dense. Readability counts. Special
+cases aren't special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In
+the face of ambiguity, refuse the temptation to guess. There should be one-- and preferably only one --obvious way to do it. Although that way may not be obvious at first unless you're Dutch.
+Now is better than never. Although never is often better than *right* now. If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea. Namespaces are one honking great idea-- let's do more of those! _ _ _ _ _ _ _''',
+        },
     ]
 }
