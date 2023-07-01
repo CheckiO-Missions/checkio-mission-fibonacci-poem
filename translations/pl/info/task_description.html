@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+<p>
+    Inspiracją dla tej misji jest następujący facebook Briana Bilstona <a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">post</a>:
+</p>
+<p style="text-align: center;">
+    <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 300px"/>
+</p>
+<p>
+    Proszę podzielić dany tekst na wielowierszowy za pomocą "\n", gdzie każdy wiersz zawiera liczbę słów równą bieżącej <a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>.
+</p>
+<p>
+    Oto kilka wyjaśnień:
+    <ul>
+        <li>Ciąg Fibonacciego zaczyna się od 0, 1, ale wynikowy ciąg powinien zawierać tylko niepuste wiersze;</li>
+        <li>w przypadku, gdy nie ma wystarczającej liczby słów dla bieżącego wiersza - proszę uzupełnić do odpowiedniej długości znakiem "_";</li>
+        <li>znaki interpunkcyjne są traktowane jako część poprzedniego lub następnego słowa.</li>
+    </ul>
+</p>
+<p>Proszę spojrzeć na schematyczny przykład ("w" dla słowa):</p>
+<pre>
+"w w w w w w w w" -> '''w
+                        w
+                        w w
+                        w w w
+                        w _ _ _ _'''
+</pre>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Wejście:</strong> Ciąg znaków <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Wyjście:</strong> Ciąg znaków <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+    <strong>Przykłady:</strong>
+</p>
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
