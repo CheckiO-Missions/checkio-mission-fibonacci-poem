@@ -1,0 +1,213 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>
+            💡 Be attentive - this mission is not very easy, so as solution. The general idea is to make an iterator with separate words from the given <b class="code">text</b>. Then on each step take a needed number (current Fibonacci number) of words, until the iterator become exhausted. On each step join words in a line and join all lines into multiline text at the end.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, what should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            Before writing the function, you need to import <b class="code">Iterator</b> object from <a target="_blank" href="https://docs.python.org/3/library/collections.abc.html">collections.abc</a> module.
+        </p>
+        <pre class="brush: python">
+from collections.abc import Iterator        
+        </pre>
+        <p>
+            Now, split the given <b class="code">text</b> into sequence of separate words with <a target="_blank" href="https://www.w3schools.com/python/ref_string_split.asp">str.split()</a> method with default separator and create an <a target="_blank" href="https://www.w3schools.com/python/python_iterators.asp">iterator</a> from the sequence.
+        </p>
+        <pre class="brush: python">
+it = iter(text.split())
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Clear! What to do next?
+    </div>
+    <div class="answer">
+        <p>
+            Let's imagine what you will have at the end. You will need an additional function (e.g. <b class="code">gen</b>), which takes the iterator <b class="code">it</b> as argument and returns all joined lines with the correct number of words. So, your general function should return these lines joined with new line symbol. Use <a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join()</a> method with <b class="code">\n</b> as separator. 
+        </p>
+        <pre class="brush: python">
+def gen(it: Iterator[str]) -> Iterator[str]:
+    ...
+it = iter(text.split())        
+return "\n".join(gen(it))
+        </pre>
+        <p>Your function <b class="code">gen</b> will yields joined lines of words, so the return type is also <b class="code">Iterator</b>. Now, you need to write the function.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Let's do it! What should be there?
+    </div>
+    <div class="answer">
+        <p>
+            You need to declare two variables with the starting elements of Fibonacci progression to be able to calculate any of its further elements. 
+        </p>
+        <pre class="brush: python">
+f0, f1 = 0, 1
+        </pre>
+        <p>
+            You don't know, how long you are going to receive words from <b class="code">it</b>, so you need <a target="_blank" href="https://www.w3schools.com/python/python_while_loops.asp">while True</a> loop here.
+        </p>
+        <pre class="brush: python">
+while True:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to create each line of words?
+    </div>
+    <div class="answer">
+        <p>
+            Let's break this step into a few ones. Obviously, words in the line are joined together with white space.
+        </p>
+        <pre class="brush: python">
+line = " ".join(...)
+        </pre>
+        <p>
+            What should you join inside? You need to take the next element from <b class="code">it</b> again and again. If the iterator become exhausted, you need to take "_". This is written very short.
+        </p>
+        <pre class="brush: python">
+line = " ".join(next(it, "_") ...)
+        </pre>
+        <p>
+            Well, how many words should you get each time? Since you don't need empty lines, you should start from <b class="code">f1</b> words, which is equal <b class="code">1</b> now. Iterate over <b class="code">f1</b> items with now assigning to variable.
+        </p>
+        <pre class="brush: python">
+line = " ".join(next(it, "_") for _ in range(f1))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wow! That was short and smart! What shall I do next?
+    </div>
+    <div class="answer">
+        <p>
+            In some moment, when there are no words left, you will get the line, which already starts from "_". So now you need to check each line and break the loop in this case. You may use <a target="_blank" href="https://www.w3schools.com/python/ref_string_startswith.asp">str.startswith()</a> method with argument <b class="code">_</b>.
+        </p>
+        <pre class="brush: python">
+if line.startswith("_"):
+    break
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I see. How to proceed the loop if the line still includes words?
+    </div>
+    <div class="answer">
+        <p>
+            As I said before, your <b class="code">gen</b> function is a generator itself, so now you should <a target="_blank" href="https://realpython.com/introduction-to-python-generators/">yield</a> your correct line out of function.
+        </p>
+        <pre class="brush: python">
+yield line
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        No I need to get a new Fibonacci number?
+    </div>
+    <div class="answer">
+        <p>
+            Yes! The only thing left is to create a new <b class="code">fo, f1</b> to use them to get bigger number of words from <b class="code">it</b> later. Python makes this double assignment easy.
+        </p>
+        <pre class="brush: python">
+f0, f1 = f1, f0 + f1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>
+            You just need to join all hints and wrap your code into function expression. Using type hints for input and output data are highly recommended.
+        </p>
+        <p>Here is the whole solution:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterator
+
+
+def fibo_poem(text: str) -> str:
+
+    def gen(it: Iterator[str]) -> Iterator[str]:
+        
+        f0, f1 = 0, 1
+        while True:
+            line = " ".join(next(it, "_") for _ in range(f1))
+            if line.startswith("_"):
+                break
+            yield line
+            f0, f1 = f1, f0 + f1
+
+    it = iter(text.split())        
+    return "\n".join(gen(it))
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            This one is generally the same, but with list slicing instead of yielding values from iterators.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fibo_poem(text: str) -> str:
+
+    a, b, text, poem = 0, 1, text.split(), []
+    while text:
+        row, text = text[:b], text[b:]
+        row.extend('_' * (b - len(row)))
+        poem.append(' '.join(row))
+        a, b = b, a + b
+    return '\n'.join(poem)
+        </pre>
+        </div>
+        <p>
+            This one is even shorter. Revert the list with words and pop items from the end until the list is noe empty, then take "_". Then build new Fibonacci numbers and update string result with new joined line. Strip all unnecessary white spaces and new line symbol.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fibo_poem(text: str) -> str:
+
+    text, a, b, result = text.split()[::-1], 1, 1 , ""
+    while text:
+        line = (text and text.pop() or "_" for _ in range(b))
+        a, b, result = a + b, a, result + ' '.join(line) + "\n"
+    return result.strip()
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        👍 Glad to hear it!
+    </div>
+</div>
+</body>
