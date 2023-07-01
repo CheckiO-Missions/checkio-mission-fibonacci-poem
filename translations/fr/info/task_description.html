@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+<p>
+    Cette mission est inspirée par la page facebook de Brian Bilston <a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">post</a>:
+</p>
+<p style="text-align: center;">
+    <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 300px"/>
+</p>
+<p>
+    Découper un texte donné en plusieurs lignes avec "\n", où chaque ligne contient un nombre de mots égal au nombre actuel <a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>.
+</p>
+<p>
+    Voici quelques précisions:
+    <ul>
+        <li>La séquence de Fibonacci commence à 0, 1, mais la chaîne de résultats ne doit comprendre que des lignes non vides;</li>
+        <li>s'il n'y a pas assez de mots pour la ligne en cours, complétez-la à la bonne longueur avec "_";</li>
+        <li>les signes de ponctuation sont considérés comme faisant partie du mot précédent ou suivant.</li>
+    </ul>
+</p>
+<p>Examinons l'exemple schématique ("w" pour un mot):</p>
+<pre>
+"w w w w w w w w" -> '''w
+                        w
+                        w w
+                        w w w
+                        w _ _ _ _'''
+</pre>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Une chaîne de caractères <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Sortie:</strong> Une chaîne <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+    <strong>Exemples:</strong>
+</p>
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
