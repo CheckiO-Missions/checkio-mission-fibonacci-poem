@@ -1,0 +1,213 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            💡 Soyez attentif - cette mission n'est pas très facile, tout comme la solution. L'idée générale est de créer un itérateur avec des mots distincts à partir de l'adresse <b class="code">text</b>. Ensuite, à chaque étape, prenez un nombre nécessaire (nombre de Fibonacci actuel) de mots, jusqu'à ce que l'itérateur soit épuisé. À chaque étape, joignez les mots sur une ligne et joignez toutes les lignes pour obtenir un texte multiligne à la fin.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, par quoi dois-je commencer?
+    </div>
+    <div class="answer">
+        <p>
+            Avant d'écrire la fonction, vous devez importer l'objet <b class="code">Iterator</b> du module <a target="_blank" href="https://docs.python.org/3/library/collections.abc.html">collections.abc</a>.
+        </p>
+        <pre class="brush: python">
+from collections.abc import Iterator        
+        </pre>
+        <p>
+            Maintenant, divisez l'objet <b class="code">text</b> en une séquence de mots distincts à l'aide de la méthode <a target="_blank" href="https://www.w3schools.com/python/ref_string_split.asp">str.split()</a> avec le séparateur par défaut et créez un objet <a target="_blank" href="https://www.w3schools.com/python/python_iterators.asp">iterator</a> à partir de la séquence.
+        </p>
+        <pre class="brush: python">
+it = iter(text.split())
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        C'est clair! Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            Imaginons ce que vous obtiendrez à la fin. Vous aurez besoin d'une fonction supplémentaire (par exemple <b class="code">gen</b>), qui prend l'itérateur <b class="code">it</b> comme argument et renvoie toutes les lignes jointes avec le nombre correct de mots. Votre fonction générale doit donc renvoyer ces lignes jointes avec le symbole de la nouvelle ligne. Utilisez la méthode <a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join()</a> avec <b class="code">\n</b> comme séparateur. 
+        </p>
+        <pre class="brush: python">
+def gen(it: Iterator[str]) -> Iterator[str]:
+    ...
+it = iter(text.split())        
+return "\n".join(gen(it))
+        </pre>
+        <p>Votre fonction <b class="code">gen</b> renvoie des lignes de mots jointes, le type de retour est donc également <b class="code">Iterator</b>. Vous devez maintenant écrire la fonction.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        C'est parti! Que doit-il y avoir?
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez déclarer deux variables avec les éléments de départ de la progression de Fibonacci pour pouvoir calculer n'importe lequel de ses éléments suivants. 
+        </p>
+        <pre class="brush: python">
+f0, f1 = 0, 1
+        </pre>
+        <p>
+            Vous ne savez pas combien de temps vous allez recevoir des mots de <b class="code">it</b>, vous avez donc besoin de la boucle <a target="_blank" href="https://www.w3schools.com/python/python_while_loops.asp">while True</a> ici.
+        </p>
+        <pre class="brush: python">
+while True:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment créer chaque ligne de mots?
+    </div>
+    <div class="answer">
+        <p>
+            Décomposons cette étape en plusieurs. Évidemment, les mots de la ligne sont reliés entre eux par des espaces blancs.
+        </p>
+        <pre class="brush: python">
+line = " ".join(...)
+        </pre>
+        <p>
+            Que devez-vous joindre à l'intérieur? Vous devez prendre l'élément suivant dans <b class="code">it</b>, encore et encore. Si l'itérateur est épuisé, vous devez prendre "_". Ce texte est très court.
+        </p>
+        <pre class="brush: python">
+line = " ".join(next(it, "_") ...)
+        </pre>
+        <p>
+            Combien de mots devez-vous obtenir à chaque fois? Puisque vous n'avez pas besoin de lignes vides, vous devriez commencer à partir de <b class="code">f1</b> mots, ce qui est égal à <b class="code">1</b> maintenant. Interrogez <b class="code">f1</b> avec now en l'assignant à une variable.
+        </p>
+        <pre class="brush: python">
+line = " ".join(next(it, "_") for _ in range(f1))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ouah! C'était court et intelligent! Que dois-je faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            À un moment donné, lorsqu'il n'y aura plus de mots, vous obtiendrez la ligne qui commence déjà par "_". Vous devez donc vérifier chaque ligne et interrompre la boucle dans ce cas. Vous pouvez utiliser la méthode <a target="_blank" href="https://www.w3schools.com/python/ref_string_startswith.asp">str.startswith()</a> avec l'argument <b class="code">_</b>.
+        </p>
+        <pre class="brush: python">
+if line.startswith("_"):
+    break
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je vois. Comment poursuivre la boucle si la ligne contient toujours des mots?
+    </div>
+    <div class="answer">
+        <p>
+            Comme je l'ai dit précédemment, votre fonction <b class="code">gen</b> est un générateur en soi, vous devez donc maintenant <a target="_blank" href="https://realpython.com/introduction-to-python-generators/">yield</a> votre ligne correcte hors de la fonction.
+        </p>
+        <pre class="brush: python">
+yield line
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        N'ai-je pas besoin d'obtenir un nouveau nombre de Fibonacci?
+    </div>
+    <div class="answer">
+        <p>
+            Oui! Il ne reste plus qu'à créer un nouveau <b class="code">fo, f1</b> pour l'utiliser plus tard afin d'obtenir un plus grand nombre de mots à partir de <b class="code">it</b>. Python facilite cette double tâche.
+        </p>
+        <pre class="brush: python">
+f0, f1 = f1, f0 + f1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de combiner tous les indices et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterator
+
+
+def fibo_poem(text: str) -> str:
+
+    def gen(it: Iterator[str]) -> Iterator[str]:
+        
+        f0, f1 = 0, 1
+        while True:
+            line = " ".join(next(it, "_") for _ in range(f1))
+            if line.startswith("_"):
+                break
+            yield line
+            f0, f1 = f1, f0 + f1
+
+    it = iter(text.split())        
+    return "\n".join(gen(it))
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être une vraie 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Celui-ci est généralement le même, mais avec le découpage de liste au lieu de donner des valeurs à partir d'itérateurs.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fibo_poem(text: str) -> str:
+
+    a, b, text, poem = 0, 1, text.split(), []
+    while text:
+        row, text = text[:b], text[b:]
+        row.extend('_' * (b - len(row)))
+        poem.append(' '.join(row))
+        a, b = b, a + b
+    return '\n'.join(poem)
+        </pre>
+        </div>
+        <p>
+            Celui-ci est encore plus court. Inversez la liste avec des mots et retirez des éléments à partir de la fin jusqu'à ce que la liste soit vide, puis prenez "_". Construisez ensuite de nouveaux nombres de Fibonacci et mettez à jour le résultat de la chaîne avec la nouvelle ligne jointe. Supprimez tous les espaces blancs inutiles et le symbole de la nouvelle ligne.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fibo_poem(text: str) -> str:
+
+    text, a, b, result = text.split()[::-1], 1, 1 , ""
+    while text:
+        line = (text and text.pop() or "_" for _ in range(b))
+        a, b, result = a + b, a, result + ' '.join(line) + "\n"
+    return result.strip()
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! J'en sais plus et je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        👍 Heureux de l'apprendre!
+    </div>
+</div>
+</body>
