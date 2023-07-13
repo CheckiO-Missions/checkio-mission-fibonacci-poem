@@ -1,0 +1,213 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这项任务。
+    </div>
+    <div class="answer">
+        <p>
+            💡 注意 - 这个任务不是很容易，所以作为解决方案。一般的想法是从给定的<b class="code">text</b> ，用不同的词做一个迭代器。然后每一步都取所需数量（当前的斐波纳契数）的单词，直到迭代器耗尽。在每一步中将单词连接成一行，并在最后将所有行连接成多行文本。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好的，我应该从哪里开始？
+    </div>
+    <div class="answer">
+        <p>
+            在编写函数之前，您需要从<a target="_blank" href="https://docs.python.org/3/library/collections.abc.html">collections.abc</a> 模块导入<b class="code">Iterator</b> 对象。
+        </p>
+        <pre class="brush: python">
+from collections.abc import Iterator        
+        </pre>
+        <p>
+            现在，使用<a target="_blank" href="https://www.w3schools.com/python/ref_string_split.asp">str.split()</a> 方法将给定的<b class="code">text</b> 拆分为多个单独的单词序列，并使用默认分隔符创建一个<a target="_blank" href="https://www.w3schools.com/python/python_iterators.asp">iterator</a> 。
+        </p>
+        <pre class="brush: python">
+it = iter(text.split())
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        清除！下一步做什么？
+    </div>
+    <div class="answer">
+        <p>
+            让我们想象一下最后的结果。您将需要一个附加函数（例如<b class="code">gen</b> ），该函数将迭代器<b class="code">it</b> 作为参数，并返回具有正确字数的所有连接行。因此，您的一般函数应返回这些以新行符号连接的行。使用<a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join()</a> 方法，以<b class="code">\n</b> 作为分隔符。 
+        </p>
+        <pre class="brush: python">
+def gen(it: Iterator[str]) -> Iterator[str]:
+    ...
+it = iter(text.split())        
+return "\n".join(gen(it))
+        </pre>
+        <p>您的函数<b class="code">gen</b> 将产生连接的单词行，因此返回类型也是<b class="code">Iterator</b> 。现在，您需要编写函数。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        让我们开始吧！应该有什么？
+    </div>
+    <div class="answer">
+        <p>
+            您需要用斐波那契数列的起始元素声明两个变量，以便能够计算其后的任何元素。 
+        </p>
+        <pre class="brush: python">
+f0, f1 = 0, 1
+        </pre>
+        <p>
+            您不知道从<b class="code">it</b> ，所以您需要<a target="_blank" href="https://www.w3schools.com/python/python_while_loops.asp">while True</a> 循环。
+        </p>
+        <pre class="brush: python">
+while True:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何创建每行单词？
+    </div>
+    <div class="answer">
+        <p>
+            让我们把这一步分成几个步骤。很明显，一行中的单词是用空格连接起来的。
+        </p>
+        <pre class="brush: python">
+line = " ".join(...)
+        </pre>
+        <p>
+            您应该在里面连接什么呢？您需要一次又一次地从<b class="code">it</b> 取下一个元素。如果迭代器耗尽，您需要取"_"。这写得很短。
+        </p>
+        <pre class="brush: python">
+line = " ".join(next(it, "_") ...)
+        </pre>
+        <p>
+            那么，每次应该取多少个单词呢？因为你不需要空行，所以你应该从<b class="code">f1</b> 开始，等于现在的<b class="code">1</b> 。对<b class="code">f1</b> 项进行迭代，现在赋值给变量。
+        </p>
+        <pre class="brush: python">
+line = " ".join(next(it, "_") for _ in range(f1))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        哇哦！真是又短又聪明！下一步我该怎么做？
+    </div>
+    <div class="answer">
+        <p>
+            在某一时刻，当没有字了，你会得到一行，它已经从"_"开始了。因此，在这种情况下，您需要检查每一行并中断循环。您可以使用<a target="_blank" href="https://www.w3schools.com/python/ref_string_startswith.asp">str.startswith()</a> 方法，参数为<b class="code">_</b> 。
+        </p>
+        <pre class="brush: python">
+if line.startswith("_"):
+    break
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我明白了。如果该行仍然包含单词，如何继续循环？
+    </div>
+    <div class="answer">
+        <p>
+            正如我之前所说，您的<b class="code">gen</b> 函数本身就是一个生成器，所以现在您应该<a target="_blank" href="https://realpython.com/introduction-to-python-generators/">yield</a> 函数中的正确行。
+        </p>
+        <pre class="brush: python">
+yield line
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我不需要得到一个新的斐波纳契数吗？
+    </div>
+    <div class="answer">
+        <p>
+            是的！唯一剩下的事情就是创建一个新的<b class="code">fo, f1</b> ，然后用它们从<b class="code">it</b> 得到更大的字数。Python使这种双重赋值变得简单。
+        </p>
+        <pre class="brush: python">
+f0, f1 = f1, f0 + f1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需连接所有提示并将代码封装为函数表达式。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterator
+
+
+def fibo_poem(text: str) -> str:
+
+    def gen(it: Iterator[str]) -> Iterator[str]:
+        
+        f0, f1 = 0, 1
+        while True:
+            line = " ".join(next(it, "_") for _ in range(f1))
+            if line.startswith("_"):
+                break
+            yield line
+            f0, f1 = f1, f0 + f1
+
+    it = iter(text.split())        
+    return "\n".join(gen(it))
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        告诉我更多的解决方案！<br />
+        因为我想成为一个真正的 🥇 Python Ninnjaa！
+    </div>
+    <div class="answer">
+        <p>当然，抓住它！</p>
+        <p>
+            这个大体上是一样的，但是用列表切片代替了从迭代器中产生值。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fibo_poem(text: str) -> str:
+
+    a, b, text, poem = 0, 1, text.split(), []
+    while text:
+        row, text = text[:b], text[b:]
+        row.extend('_' * (b - len(row)))
+        poem.append(' '.join(row))
+        a, b = b, a + b
+    return '\n'.join(poem)
+        </pre>
+        </div>
+        <p>
+            这个更短。用单词反转列表并从末尾弹出条目，直到列表不再为空，然后取"_"。然后建立新的斐波纳契数，并用新的连接行更新字符串结果。删除所有不必要的空格和新行符号。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fibo_poem(text: str) -> str:
+
+    text, a, b, result = text.split()[::-1], 1, 1 , ""
+    while text:
+        line = (text and text.pop() or "_" for _ in range(b))
+        a, b, result = a + b, a, result + ' '.join(line) + "\n"
+    return result.strip()
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解了更多！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息！
+    </div>
+</div>
+</body>
