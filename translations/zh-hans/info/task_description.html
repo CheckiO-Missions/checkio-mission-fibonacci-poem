@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+<p>
+    这项任务的灵感来源于以下Brian Bilston的Facebook<a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">post</a> ：
+</p>
+<p style="text-align: center;">
+    <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 300px"/>
+</p>
+<p>
+    用"\n "将给定的文本分割成多行，每行包含的字数等于当前<a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a> 。
+</p>
+<p>
+    这里有一些说明：
+    <ul>
+        <li>斐波那契数列从0，1开始，但是结果字符串应该只包括非空行；</li>
+        <li>如果当前行没有足够的字数 - 用"_"补充到适当的长度；</li>
+        <li>标点符号被视为上一个或下一个单词的一部分。</li>
+    </ul>
+</p>
+<p>让我们看一下示意图示例（"w "表示单词）：</p>
+<pre>
+"w w w w w w w w" -> '''w
+                        w
+                        w w
+                        w w w
+                        w _ _ _ _'''
+</pre>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>输入</strong>字符串 <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>输出</strong>字符串 <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+    <strong>示例：</strong>
+</p>
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
