@@ -1,22 +1,22 @@
 <!-- Describe task in general -->
 <p>
-    Ця місія натхненна <a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">публікацією</a> Brian Bilston'a у Facebook.
+    Ця місія натхненна наступним дописом Брайана Білстона на Facebook <a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">post</a>:
 </p>
 <p style="text-align: center;">
     <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 300px"/>
 </p>
 <p>
-    Розбий даний текст на багаторядковий текст з допомогою "\n", де кожен рядок містить кількість слів, що дорівнює поточному <a target="_blank" href="https://uk.wikipedia.org/wiki/Послідовність_Фібоначчі">числу Фібоначчі</a>.
+    Розбити заданий текст на багаторядковий за допомогою "\n", де кожен рядок містить кількість слів, що дорівнює поточному <a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>.
 </p>
 <p>
-    Ось деякі додаткові роз'яснення:
+    Ось деякі пояснення:
     <ul>
-        <li>Послідовність Фібоначчі починається з 0, 1, але результатний текст повинен містити тільки непусті рядки;</li>
-        <li>у випадку, якщо не достатньо слів для завершення поточного рядка - доповни до коректної довжини "_";</li>
-        <li>знаки пунктуації вважаються частиною попереднього або наступного слова.</li>
+        <li>Послідовність Фібоначчі починається з 0, 1, але рядок результату повинен містити лише непорожні рядки;</li>
+        <li>у випадку, якщо не вистачає слів для поточного рядка - доповнити до потрібної довжини символом "_";</li>
+        <li>розділові знаки вважаються частиною попереднього або наступного слова.</li>
     </ul>
 </p>
-<p>Давай поглянемо на схематичний приклад ("w" як позначення слова):</p>
+<p>Розглянемо схематичний приклад ("w" - слово):</p>
 <pre>
 "w w w w w w w w" -> '''w
                         w
@@ -27,11 +27,11 @@
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Вхідні дані:</strong> Рядок (str{% if is_js %}ing{% endif %}).
+   <strong>Вхідні дані:</strong> Рядок <span>(str{% if is_js %}ing{% endif %})</span>.
 </p>
 
 <p>
-    <strong>Вихідні дані:</strong> Рядок (str{% if is_js %}ing{% endif %}).
+   <strong>Вихідні дані:</strong> Рядок <span>(str{% if is_js %}ing{% endif %})</span>.
 </p>
 
 <p>
