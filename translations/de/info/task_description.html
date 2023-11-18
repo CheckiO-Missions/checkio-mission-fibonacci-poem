@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+<p>
+    Diese Mission ist inspiriert von der folgenden Facebook-Seite von Brian Bilston <a target="_blank" href="https://www.facebook.com/BrianBilston/posts/pfbid0PnieZPXmdzgNy6vWzRjFkDsKch4YvTCEJv65LS5sGa4daYoygbHJcG1TVK5Nw9SGl">post</a>:
+</p>
+<p style="text-align: center;">
+    <img  title="poem" src="{{MEDIA}}poem.png" alt="poem" style="max-height: 300px"/>
+</p>
+<p>
+    Teilen Sie einen gegebenen Text mit "\n" in einen mehrzeiligen Text auf, wobei jede Zeile die Anzahl der Wörter enthält, die der aktuellen <a target="_blank" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a> entspricht.
+</p>
+<p>
+    Hier sind einige Klarstellungen:
+    <ul>
+        <li>Die Fibonacci-Folge beginnt bei 0, 1, aber der Ergebnisstring sollte nur nicht leere Zeilen enthalten;</li>
+        <li>falls nicht genügend Wörter für die aktuelle Zeile vorhanden sind, ergänzen Sie sie mit "_" auf die richtige Länge;</li>
+        <li>satzzeichen werden als Teil eines vorherigen oder nächsten Wortes betrachtet.</li>
+    </ul>
+</p>
+<p>Schauen wir uns das schematische Beispiel an ("w" für ein Wort):</p>
+<pre>
+"w w w w w w w w" -> '''w
+                        w
+                        w w
+                        w w w
+                        w _ _ _ _'''
+</pre>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Eingabe:</strong> Eine Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> Eine Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+    <strong>Beispiele:</strong>
+</p>
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
